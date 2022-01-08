@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Groups.Controllers;
 
@@ -10,5 +11,14 @@ public class GroupsController : ControllerBase
     public List<Group> Get()
     {
         return new GroupDbEntities().Groups.ToList();
+    }
+
+    [HttpPost(Name = "CreateGroup")]
+    public Group Post(Group group)
+    {
+        var groupDb = new GroupDbEntities();
+        var groupEntity = groupDb.Add(group);
+        groupDb.SaveChanges();
+        return groupEntity.Entity;
     }
 }
