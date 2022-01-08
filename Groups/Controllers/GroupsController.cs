@@ -7,12 +7,8 @@ namespace Groups.Controllers;
 public class GroupsController : ControllerBase
 {
     [HttpGet(Name = "GetGroups")]
-    public IEnumerable<Group> Get()
+    public List<Group> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new Group {
-            Name = $"GroupName-{index}", 
-            Budget = 10000, 
-            Employees = new int[]{1, 3, 6}
-        }).ToArray();
+        return new GroupDbEntities().Groups.ToList();
     }
 }
