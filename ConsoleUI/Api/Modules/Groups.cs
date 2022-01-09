@@ -17,14 +17,14 @@ public class Groups
     public async Task<Group[]?> All()
     {
         return JsonConvert.DeserializeObject<Group[]>(
-            await this.http.GetStringAsync("https://localhost:9001/v1/groups")
+            await this.http.GetStringAsync("http://localhost:9001/v1/groups")
         );
     }
     
     public async Task<Group?> Get(int id)
     {
         return JsonConvert.DeserializeObject<Group>(
-            await this.http.GetStringAsync("https://localhost:9001/v1/groups/" + id)
+            await this.http.GetStringAsync("http://localhost:9001/v1/groups/" + id)
         );
     }
     
@@ -34,7 +34,7 @@ public class Groups
             name = group.Name,
             budget = group.Budget
         });
-        var response = await this.http.PostAsJsonAsync("https://localhost:9001/v1/groups", content);
+        var response = await this.http.PostAsJsonAsync("http://localhost:9001/v1/groups", content);
         return JsonConvert.DeserializeObject<Group>(
             await response.Content.ReadAsStringAsync()
         );
@@ -46,7 +46,7 @@ public class Groups
             name = group.Name,
             budget = group.Budget
         });
-        var response = await this.http.PutAsJsonAsync("https://localhost:9001/v1/groups/" + id, content);
+        var response = await this.http.PutAsJsonAsync("http://localhost:9001/v1/groups/" + id, content);
         return JsonConvert.DeserializeObject<Group>(
             await response.Content.ReadAsStringAsync()
         );
