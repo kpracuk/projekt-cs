@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groups", "Groups\Groups.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employees", "Employees\Employees.csproj", "{7167FF9D-B2B0-441E-8F89-69DF47728B1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUI", "ConsoleUI\ConsoleUI.csproj", "{1599F5D8-5060-4E5F-9B86-D41541013249}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{7167FF9D-B2B0-441E-8F89-69DF47728B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7167FF9D-B2B0-441E-8F89-69DF47728B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7167FF9D-B2B0-441E-8F89-69DF47728B1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1599F5D8-5060-4E5F-9B86-D41541013249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1599F5D8-5060-4E5F-9B86-D41541013249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1599F5D8-5060-4E5F-9B86-D41541013249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1599F5D8-5060-4E5F-9B86-D41541013249}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
