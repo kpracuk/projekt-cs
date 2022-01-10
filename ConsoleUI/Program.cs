@@ -17,7 +17,11 @@ var menu = new MenuBar(new[] {
             var view = await new ListGroups().Render();
             RenderInContent(view);
         }),
-        new MenuItem ("Dodaj", "", null)
+        new MenuItem ("Dodaj", "", async () =>
+        {
+            var view = await new CreateGroup().Render();
+            RenderInContent(view);
+        })
     })
 });
 
