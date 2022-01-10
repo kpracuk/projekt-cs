@@ -9,6 +9,7 @@ public class EmployeesController : ControllerBase
     [HttpGet(Name = "GetEmployees")]
     public List<Employee> Get()
     {
+        Console.WriteLine("GET - /v1/employees");
         return new EmployeeDbEntities().Employees.ToList();
     }
     
@@ -22,6 +23,7 @@ public class EmployeesController : ControllerBase
         }
         else
         {
+            Console.WriteLine("GET - /v1/employees/" + id);
             return Ok(employee);
         }
     }
@@ -32,6 +34,7 @@ public class EmployeesController : ControllerBase
         var employeeDb = new EmployeeDbEntities();
         var employeeEntity = employeeDb.Add(employee);
         employeeDb.SaveChanges();
+        Console.WriteLine("POST - /v1/employees");
         return employeeEntity.Entity;
     }
     
@@ -51,6 +54,7 @@ public class EmployeesController : ControllerBase
         currentEmployee.GroupId = employee.GroupId;
         currentEmployee.Type = employee.Type;
         employeeDb.SaveChanges();
+        Console.WriteLine("PUT - /v1/employees/" + id);
         return Ok(currentEmployee);
     }
 }

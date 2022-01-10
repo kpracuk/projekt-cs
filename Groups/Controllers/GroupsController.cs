@@ -10,6 +10,7 @@ public class GroupsController : ControllerBase
     [HttpGet(Name = "GetGroups")]
     public List<Group> Get()
     {
+        Console.WriteLine("GET - /v1/groups");
         return new GroupDbEntities().Groups.ToList();
     }
     
@@ -23,6 +24,7 @@ public class GroupsController : ControllerBase
         }
         else
         {
+            Console.WriteLine("GET - /v1/groups/" + id);
             return Ok(group);
         }
     }
@@ -33,6 +35,7 @@ public class GroupsController : ControllerBase
         var groupDb = new GroupDbEntities();
         var groupEntity = groupDb.Add(group);
         groupDb.SaveChanges();
+        Console.WriteLine("POST - /v1/groups");
         return groupEntity.Entity;
     }
 
@@ -49,6 +52,7 @@ public class GroupsController : ControllerBase
         currentGroup.Name = group.Name;
         currentGroup.Budget = group.Budget;
         groupDb.SaveChanges();
+        Console.WriteLine("PUT - /v1/groups/" + id);
         return Ok(currentGroup);
     }
 }
