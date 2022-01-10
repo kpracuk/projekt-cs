@@ -30,10 +30,10 @@ public class Groups
     
     public async Task<Group?> Create(Group group)
     {
-        var content = JsonContent.Create(new {
+        var content = new {
             name = group.Name,
             budget = group.Budget
-        });
+        };
         var response = await this.http.PostAsJsonAsync("http://localhost:9001/v1/groups", content);
         return JsonConvert.DeserializeObject<Group>(
             await response.Content.ReadAsStringAsync()
@@ -42,10 +42,10 @@ public class Groups
     
     public async Task<Group?> Update(int id, Group group)
     {
-        var content = JsonContent.Create(new {
+        var content = new {
             name = group.Name,
             budget = group.Budget
-        });
+        };
         var response = await this.http.PutAsJsonAsync("http://localhost:9001/v1/groups/" + id, content);
         return JsonConvert.DeserializeObject<Group>(
             await response.Content.ReadAsStringAsync()
