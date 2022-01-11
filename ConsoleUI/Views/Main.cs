@@ -1,5 +1,6 @@
 ﻿using Terminal.Gui;
 using ConsoleUI.Views.Groups;
+using ConsoleUI.Views.Employees;
 
 namespace ConsoleUI.Views;
 
@@ -46,6 +47,18 @@ public sealed class Main
                 new MenuItem ("Dodaj", "", async () =>
                 {
                     var view = await new CreateGroup().Render();
+                    RenderInContent(view);
+                })
+            }),
+            new MenuBarItem ("Pracownicy", new[] {
+                new MenuItem ("Lista ", "", async () =>
+                {
+                    var view = await new ListEmployees().Render();
+                    RenderInContent(view);
+                }),
+                new MenuItem ("Dodaj", "", async () =>
+                {
+                    var view = await new CreateEmployee().Render();
                     RenderInContent(view);
                 })
             })

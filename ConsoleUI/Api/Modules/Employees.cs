@@ -31,8 +31,8 @@ public class Employees
     {
         var content = new {
             name = employee.Name,
-            surname = employee.Name,
-            email = employee.Name,
+            surname = employee.Surname,
+            email = employee.Email,
         };
         var response = await this.http.PostAsJsonAsync("http://localhost:9002/v1/employees", content);
         return JsonConvert.DeserializeObject<Employee>(
@@ -44,8 +44,8 @@ public class Employees
     {
         var content = new {
             name = employee.Name,
-            surname = employee.Name,
-            email = employee.Name,
+            surname = employee.Surname,
+            email = employee.Email,
         };
         var response = await this.http.PutAsJsonAsync("http://localhost:9002/v1/employees/" + id, content);
         return JsonConvert.DeserializeObject<Employee>(

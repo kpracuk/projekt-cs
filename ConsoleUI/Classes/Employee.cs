@@ -13,4 +13,9 @@ public class Employee
     public string? Type { get; set; }
 
     public int? GroupId { get; set; }
+    
+    public override string ToString()
+    {
+        return $"{this.Id} - {this.Name} {this.Surname} <{this.Email}>";
+    }
 }
