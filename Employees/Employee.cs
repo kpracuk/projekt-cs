@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Employees.Classes;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employees;
@@ -9,6 +11,14 @@ internal class EmployeeDbEntities : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     { 
         optionsBuilder.UseSqlite("Filename=EmployeesDatabase.db");
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Devops>().ToTable("Devops");
+        modelBuilder.Entity<Designer>().ToTable("Designers");
+        modelBuilder.Entity<Frontend>().ToTable("Frontends");
+        modelBuilder.Entity<Backend>().ToTable("Backends");
     }
 }
 

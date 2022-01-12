@@ -1,3 +1,4 @@
+using Employees.Classes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employees.Controllers;
@@ -29,13 +30,75 @@ public class EmployeesController : ControllerBase
     }
     
     [HttpPost(Name = "CreateEmployee")]
-    public Employee Post(Employee employee)
+    public bool Post(EmployeeRequest request)
     {
-        var employeeDb = new EmployeeDbEntities();
-        var employeeEntity = employeeDb.Add(employee);
-        employeeDb.SaveChanges();
+        var employeesDb = new EmployeeDbEntities();
+        var newEmployee = new Employee()
+        {
+            Name = request.Name,
+            Surname = request.Surname,
+            Email = request.Email,
+            Type = request.Type,
+        };
+        
+        var employeeEntity = employeesDb.Add(newEmployee);
+        
+        employeesDb.SaveChanges();
+
+        switch (request.Type)
+        {
+            case "designer":
+            {
+                var designerDb = new DesignersDbEntities();
+                designerDb.Add(new Designer()
+                {
+                    Type = request.DesignerType,
+                    EmployeeId = employeeEntity.Entity.Id
+                });
+                designerDb.SaveChanges();
+                break;
+            }
+            case "devops":
+            {
+                var devopsDb = new DevopsDbEntities();
+                devopsDb.Add(new Devops()
+                {
+                    Cloud = request.Cloud,
+                    Level = request.Level,
+                    EmployeeId = employeeEntity.Entity.Id
+                });
+                devopsDb.SaveChanges();
+                break;
+            }
+            case "frontend":
+            {
+                var frontendDb = new FrontendDbEntities();
+                frontendDb.Add(new Frontend()
+                {
+                    Language = request.Language,
+                    Onsite = request.Onsite,
+                    Level = request.Level,
+                    EmployeeId = employeeEntity.Entity.Id
+                });
+                frontendDb.SaveChanges();
+                break;
+            }
+            case "backend":
+            {
+                var backendDb = new BackendDbEntities();
+                backendDb.Add(new Backend()
+                {
+                    Language = request.Language,
+                    Onsite = request.Onsite,
+                    Level = request.Level,
+                    EmployeeId = employeeEntity.Entity.Id
+                });
+                backendDb.SaveChanges();
+                break;
+            }
+        }
         Console.WriteLine("POST - /v1/employees");
-        return employeeEntity.Entity;
+        return true;
     }
     
     [HttpPut("{id}", Name = "UpdateEmployee")]
