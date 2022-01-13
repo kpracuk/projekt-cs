@@ -16,6 +16,6 @@ public class Employee
     
     public override string ToString()
     {
-        return $"{this.Id} - {this.Name} {this.Surname} <{this.Email}> - {this.Type}";
+        return $"{this.Id} - {this.Name} {this.Surname} <{this.Email}>";
     }
 }

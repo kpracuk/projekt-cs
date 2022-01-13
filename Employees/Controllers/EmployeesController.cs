@@ -39,6 +39,7 @@ public class EmployeesController : ControllerBase
             Surname = request.Surname,
             Email = request.Email,
             Type = request.Type,
+            GroupId = request.GroupId,
         };
         
         var employeeEntity = employeesDb.Add(newEmployee);

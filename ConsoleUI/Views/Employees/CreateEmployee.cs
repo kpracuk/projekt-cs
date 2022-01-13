@@ -8,7 +8,7 @@ public class CreateEmployee : IAppView
 {
     private Client api = new Client();
 
-    private async Task<Employee> PostEmployee(Employee employee)
+    private async Task<object> PostEmployee(Employee employee)
     {
         return await api.Employees.Create(employee);
     }
@@ -22,45 +22,90 @@ public class CreateEmployee : IAppView
             Width = Dim.Fill(),
             Height = Dim.Fill()
         };
-
-        var fields = new Dictionary<string, string>
+        view.Add(new Label ("Imię: ") {
+            X = 1,
+            Y = 0,
+            Width = 20,
+            Height = 1
+        });
+        var nameField = new TextField("")
         {
-            {"name", "Imię: "},
-            {"surname", "Nazwisko: "},
-            {"email", "Email: "}
+            X = 1,
+            Y = 1,
+            Width = 30,
+            Height = 1,
+            ColorScheme = Colors.Dialog
         };
+        view.Add(nameField);
         
-        var inputs = new Dictionary<string, View?>
+        view.Add(new Label ("Nazwisko: ") {
+            X = 1,
+            Y = 2,
+            Width = 20,
+            Height = 1
+        });
+        var surnameField = new TextField("")
         {
-            {"name", null},
-            {"surname", null},
-            {"email", null}
+            X = 1,
+            Y = 3,
+            Width = 30,
+            Height = 1,
+            ColorScheme = Colors.Dialog
         };
-
-        for (int i = 0; i < inputs.Count; i++)
+        view.Add(surnameField);
+        
+        view.Add(new Label ("Email: ") {
+            X = 1,
+            Y = 4,
+            Width = 20,
+            Height = 1
+        });
+        var emailField = new TextField("")
         {
-            var field = fields.ElementAt(i);
-            view.Add(new Label (field.Value) {
-                X = 1,
-                Y = 2 * i,
-                Width = 20,
-                Height = 1
-            });
-            inputs[field.Key] = new TextField("")
-            {
-                X = 1,
-                Y = 2 * i + 1,
-                Width = 30,
-                Height = 1,
-                ColorScheme = Colors.Dialog
-            };
-            view.Add(inputs[field.Key]);
-        }
+            X = 1,
+            Y = 5,
+            Width = 30,
+            Height = 1,
+            ColorScheme = Colors.Dialog
+        };
+        view.Add(emailField);
+        
+        view.Add(new Label ("Stanowisko: ") {
+            X = 1,
+            Y = 6,
+            Width = 20,
+            Height = 1
+        });
+        var typeField = new TextField("")
+        {
+            X = 1,
+            Y = 7,
+            Width = 30,
+            Height = 1,
+            ColorScheme = Colors.Dialog
+        };
+        view.Add(typeField);
+        
+        view.Add(new Label ("Projekt: ") {
+            X = 1,
+            Y = 8,
+            Width = 20,
+            Height = 1
+        });
+        var groupField = new TextField("")
+        {
+            X = 1,
+            Y = 9,
+            Width = 30,
+            Height = 1,
+            ColorScheme = Colors.Dialog
+        };
+        view.Add(groupField);
 
         var button = new Button("_Dodaj")
         {
             X = 1,
-            Y = 7,
+            Y = 11,
             Width = 30,
             Height = 1,
             ColorScheme = Colors.Dialog
@@ -69,9 +114,11 @@ public class CreateEmployee : IAppView
         {
             var employee = new Employee
             {
-                Name = inputs["name"].Text.ToString(),
-                Surname = inputs["name"].Text.ToString(),
-                Email = inputs["name"].Text.ToString(),
+                Name = nameField.Text.ToString(),
+                Surname = surnameField.Text.ToString(),
+                Email = emailField.Text.ToString(),
+                Type = typeField.Text.ToString(),
+                GroupId = int.Parse(groupField.Text.ToString())
             };
             await this.api.Employees.Create(employee);
             view.RemoveAll();

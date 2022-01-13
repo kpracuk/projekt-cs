@@ -27,15 +27,17 @@ public class Employees
         );
     }
     
-    public async Task<Employee?> Create(Employee employee)
+    public async Task<object?> Create(Employee employee)
     {
         var content = new {
             name = employee.Name,
             surname = employee.Surname,
             email = employee.Email,
+            type = employee.Type,
+            groupId = employee.GroupId,
         };
         var response = await this.http.PostAsJsonAsync("http://localhost:9002/v1/employees", content);
-        return JsonConvert.DeserializeObject<Employee>(
+        return JsonConvert.DeserializeObject<object>(
             await response.Content.ReadAsStringAsync()
         );
     }
@@ -46,6 +48,8 @@ public class Employees
             name = employee.Name,
             surname = employee.Surname,
             email = employee.Email,
+            type = employee.Type,
+            groupId = employee.GroupId,
         };
         var response = await this.http.PutAsJsonAsync("http://localhost:9002/v1/employees/" + id, content);
         return JsonConvert.DeserializeObject<Employee>(
